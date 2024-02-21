@@ -9,6 +9,4 @@ export const map = new Map({
   6: 'Lucas',
 });
 
-export const map2 = map.merge({ 2: 'Benjamin', 4: 'Oliver' });
-
-module.exports = { map, map2 };
+export const map2 = map.set(2, 'Benjamin').set(4, 'Oliver');
