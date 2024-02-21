@@ -1,12 +1,15 @@
-import { seq } from 'immutable';
+import { Seq } from 'immutable';
 
-export default function printBestStudents(object) {
-  const students = seq(object);
-  const grades = students
-    .map((student) => student.get('grade'))
-    .filter((grade) => grade > 70);
-  const names = students
-    .map((student) => student.get('name'))
-    .filter((_, index) => grades.get(index));
-  names.forEach((name) => console.log(name));
+export function printBestStudents(students) {
+  const seq = Seq(students);
+  seq
+    .filter((student) => student.score >= 70)
+    .map((student) => ({
+      ...student,
+      firstName:
+        student.firstName.charAt(0).toUpperCase() + student.firstName.slice(1),
+      lastName:
+        student.lastName.charAt(0).toUpperCase() + student.lastName.slice(1),
+    }))
+    .forEach((student) => console.log(student));
 }
